@@ -26,6 +26,7 @@ curl --version'''
         stage("Run Docker Compose"){
             steps{
                 sh '''cd /var/lib/jenkins/workspace/dockercompose
+docker-compose down
 docker-compose up -d
 docker ps'''
            
