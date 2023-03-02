@@ -27,7 +27,6 @@ curl --version'''
             steps{
                 sh '''cd /var/lib/jenkins/workspace/dockercompose
 docker-compose down
-docker rmi $(docker images -a -q)
 docker-compose up -d
 docker ps'''
            
