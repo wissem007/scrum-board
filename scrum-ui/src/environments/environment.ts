@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  scrumAppUrl: 'http://localhost:8080'
+  //scrumAppUrl: 'http://localhost:8080'
+  scrumAppUrl: 'http://178.33.44.144:8080'
 };
 
 /*
