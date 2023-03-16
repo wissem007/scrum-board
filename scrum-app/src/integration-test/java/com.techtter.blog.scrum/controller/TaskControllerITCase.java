@@ -43,7 +43,8 @@ public class TaskControllerITCase extends CommonITCase {
 
     @Before
     public void setUp(){
-        baseURL = "http://localhost:" + port;
+        //baseURL = "http://localhost:" + port;
+        baseURL = "http://178.33.44.144:" + port;
     }
 
     @Test
