@@ -6,9 +6,9 @@ services:
 
   #PostgreSQL Database for the application
   scrum-postgres:
-    image: "postgres:9.6-alpine"
+    image: "postgres:11-alpine3.17"
     container_name: scrum-postgres
-    #Volume mounted for database for the storage
+    #Volume mounted for database for the storage image: "postgres:9.6-alpine"11-alpine3.17
     volumes:
       - scrum-data:/var/lib/postgresql/data
     ports:
