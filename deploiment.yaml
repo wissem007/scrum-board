@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrum-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scrum-ui
+  template:
+    metadata:
+      labels:
+        app: scrum-ui
+    spec:
+      containers:
+        - name: scrum-ui
+          image: wissem007/scrum-ui:v1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scrum-ui-service
+spec:
+  selector:
+    app: scrum-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
