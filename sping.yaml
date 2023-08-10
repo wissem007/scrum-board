@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: scrum-app
-          image: wissem007/scrum-app:tagname:v1
+          image: wissem007/scrum-app:v1
           ports:
             - containerPort: 8080
           env:
