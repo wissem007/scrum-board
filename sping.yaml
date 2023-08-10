@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrum-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scrum-app
+  template:
+    metadata:
+      labels:
+        app: scrum-app
+    spec:
+      containers:
+        - name: scrum-app
+          image: wissem007/scrum-app:tagname:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_SERVER
+              value: scrum-postgres-service
+            - name: POSTGRES_DB
+              value: scrum
+            - name: POSTGRES_USER
+              value: scrum
+            - name: POSTGRES_PASSWORD
+              value: scrum
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scrum-app-service
+spec:
+  selector:
+    app: scrum-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
