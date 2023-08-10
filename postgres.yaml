@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scrum-postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scrum-postgres
+  template:
+    metadata:
+      labels:
+        app: scrum-postgres
+    spec:
+      containers:
+        - name: scrum-postgres
+          image: postgres:9.6-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: scrum
+            - name: POSTGRES_USER
+              value: scrum
+            - name: POSTGRES_PASSWORD
+              value: scrum
+          volumeMounts:
+            - name: scrum-data
+              mountPath: /var/lib/postgresql/data
+
+      volumes:  # Ajout de la définition du volume ici
+        - name: scrum-data
+          persistentVolumeClaim:
+            claimName: scrum-data-pvc  # Assurez-vous que le nom correspond à votre PVC
+
+# Le reste du manifeste (Service, PVC, etc.) reste inchangé
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scrum-postgres-service
+spec:
+  selector:
+    app: scrum-postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: scrum-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
