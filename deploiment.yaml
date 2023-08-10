@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: scrum-ui
-          image: wissem007/scrum-ui:v1
+          image: votre-image-docker-pour-scrum-ui
           ports:
             - containerPort: 80
 
@@ -30,3 +30,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+  type: LoadBalancer # ou NodePort, en fonction de votre environnement
