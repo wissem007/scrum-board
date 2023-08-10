@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: scrum-ui
-          image: votre-image-docker-pour-scrum-ui
+          image: wissem007/scrum-ui:v1
           ports:
             - containerPort: 80
 
